@@ -1,0 +1,37 @@
+1. paging
+   1) pageNum
+       - startRow = (currentPage - 1) * 페이지당 글수 + 1;
+         . oracle 11버전 이전(topN)
+          %. rowNum : 테이블로 부터 데이터를 추출하는 순서
+         select * from (select rownum rn, a.* from (select * from board1 
+              order by ref desc, re_step) a) where rn startRow and startRow+페이지당 글수 - 1; 	
+         . oracle 12이후
+         select * from board1 order by ref desc, re_step offset startRow -1 rows
+                    fetch first 페이지당 글수 rows only;
+        . mysql
+         select * from board1 order by ref desc, re_srep limt startRow -1, 페이지당 글수;
+       - startPage currentPage - (currentPage - 1) % 블럭당 페이지 + 1;
+         endPage = startPage + 블럭당 페이지 - 1;
+       - totalPage  = (int)Math.ceil((double)총글수/페지당 게시글수)
+       - if (endPage > totalPage) endPage = totalPage;
+    2) 이전 : startPage > 블럭당 페이지
+        다음 : totalPage > endPage
+        <c:foreach var="i" begin="<%=startPage%>" end="<%=endPage%>">
+             list.jsp?pageNum=${i}
+        </c:foreach>
+2. 쇼핑몰
+   - 관리자/운영자
+     상품등록, 게시글관리, 회원관리, 공지, 질의에 대한 응답, 배송, ....
+   - 사용자
+     쇼핑몰 목록, 상세보기, 구매, 결제, 게시글 작성/보기
+   - 무통장 입금, 결재대행사(PG payment gateway), 토스를 이용한 결재
+
+1. 모델 1      request
+   loginForm-----------> login -----------> IdChk
+         |                         |      response
+         ---------------      결과
+
+2. 모델 2      request
+   loginForm-----------> IdChkController -----------> IdChk
+         |                         |                     response
+         ----------------    성공 - login => loginSuccess

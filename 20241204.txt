@@ -1,0 +1,26 @@
+1. Servlet
+  1) server + applit => 서버에서 자바프로그램을 실행하고 그 결과를 html내보는 프로그램
+  2) HttpServlet을 상속
+            request
+      get ----------> doGet     url?속성=값&속성=값&속성=값...... head전달 노출 255
+      post <-------> doPost    body전달, 보안(노출 안됨), 길이에 제한 없음
+           response
+  3) request.getParameter("속성명");
+     속성 <input name="속성명">
+     전달되는 데이터는 문자를 인식
+  4) PrintWriter out = response.getWriter()
+     out.println("html"+변수)
+  5) 한글
+      request.setCharacterEncoding("utf-8"); post방식
+      response.setContentType("text/html;charset=utf-8");
+  6) @WebServlet("url")
+      구버전 web.xml을 통하여 url전달
+
+ome.jsp                 ome_result.jsp
+  checkbox post      현재날자 출력
+  짜증날 때 짜장       -- 차례로 출
+  우울할 때 우동
+  복잡할 때 볶음밥
+  해장에는 짬뽕
+  서비스는 반두
+
