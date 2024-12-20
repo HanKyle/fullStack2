@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="common.css">
+<script type="text/javascript">
+	function chk() {
+		if (frm.password.value != frm.password2.value) {
+			frm.password.focus();
+			alert("암호가 다릅니다");
+			frm.password.value = "";
+			frm.password2.value = "";
+			return false;
+		}
+	    
+		if (!frm.gender.value) {
+			alert("성별을 고르세요");
+			return false;
+		}
+
+	}
+	
+
+</script>
+</head>
+<body>
+	<form action="Member" method="post" onsubmit="return chk()" name="frm">
+		<table>
+            <caption> 회원가입 </caption>
+			<tr>
+				<th>아이디</th>
+				<td><input type="text" required="required" name="id"  autofocus="autofocus"></td>
+			</tr>
+
+			<tr>
+				<th>암호</th>
+				<td><input type="password" required="required" name="password"></td>
+			</tr>
+
+			<tr>
+				<th>암호확인</th>
+				<td><input type="password" required="required"  name="password2">
+				
+			</tr>
+
+			<tr>
+				<th>성별</th>
+				<td><input type="radio" required="required" name="gender" id="male" value="남자">남자
+				<input type="radio" required="required" name="gender" id="female" value="여자">여자</td>
+			</tr>
+
+			<tr>
+				<th>이메일 수신여부</th>
+				<td><input type="checkbox" name="email" value="공지메일" id="e1">공지메일
+				<input type="checkbox" name="email" value="광고메일" id="e2">광고메일
+				<input type="checkbox" name="email" value="배송메일" id="e3">배송메일</td>
+			</tr>
+
+			<tr>
+				<th>취미</th>
+				<td><input type="checkbox" name="hobby" value="운동" id="t1">운동
+				<input type="checkbox" name="hobby" value="영화감상" id="t2">영화감상
+				<input type="checkbox" name="hobby" value="요리" id="t3">요리
+				<input type="checkbox" name="hobby" value="여행" id="t4">여행
+				<input type="checkbox" name="hobby" value="사진찍기" id="t5">사진찍기</td>
+			</tr>
+			
+           <tr><td colspan="2"> <input type="submit" value="확인" onclick="chk()">  
+           <input type="reset" value="취소"> </td> </tr>  
+		</table>
+
+	</form>
+
+
+</body>
+</html>
